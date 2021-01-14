@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import { Switch, Route, Link } from "react-router-dom";
+import { Button, Form, FormGroup, Label, Input, Table } from "reactstrap";
+import Flight from "./Flight";
+import Home from "./Home";
+import Shop from "./Shop";
+import Error from "./Error";
 
+import Navigator from './Navigator';
+import {NavigatorBoot} from './NavigatorBoot'
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navigator />
+      <Switch>
+        <Route path="/" component={Home} exact />
+        <Route exact path="/flight" component={Flight} />
+        <Route exact path="/aboutus" render={()=>{return <Shop name="Sumit" />}}  />
+        <Route component={Error} />
+      </Switch>
     </div>
   );
 }
